@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Chat de Ideas</title>
+<link rel="stylesheet" href="../css/imagenes.css">
+</head>
+<body>
+      <header>
+        <nav class="menu">
+        <ul>
+            <li><a href="inicio.html">Inicio</a></li>
+          
+        </ul>
+    </nav>
+    </header>
+
+
+<div class="app">
+
+  <div class="sidebar">
+    <h3>Ideas</h3>
+    <div class="ideas">
+      <p onclick="selectIdea('dragon')">🐉 Un dragón escupiendo fuego</p>
+      <p onclick="selectIdea('robot')">🤖 Un robot futurista</p>
+      <p onclick="selectIdea('ciudad')">🌃 Ciudad cyberpunk</p>
+      <p onclick="selectIdea('moto')">🏍️Moto combinada</p>
+      <p onclick="selectIdea('robotia')">🤖✨ia enzeña</p>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="input-area">
+      <input type="text" id="inputText" placeholder="Escribe una idea...">
+      <button onclick="send()">Enviar</button>
+    </div>
+
+    <div class="result" id="result"></div>
+  </div>
+
+</div>
+<script src="../JS/imagenes.js"></script>
+</body>
+</html>

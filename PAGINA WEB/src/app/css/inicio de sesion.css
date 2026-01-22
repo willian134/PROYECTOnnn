@@ -1,0 +1,109 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #171818, #52c0db);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Contenedor principal */
+.container {
+    width: 85%;
+    max-width: 1100px;
+    height: 420px;
+    background: white;
+    border-radius: 10px;
+    display: flex;
+    overflow: hidden;
+}
+
+/* ----------- Panel Izquierdo ----------- */
+.left-box {
+    width: 55%;
+    padding: 50px;
+    background: linear-gradient(135deg, #2ee0e0, #242223);
+    color: rgb(245, 239, 239);
+    position: relative;
+}
+
+.left-box h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.left-box p {
+    width: 80%;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* ----------- Panel Derecho ----------- */
+.right-box {
+    width: 45%;
+    padding: 50px;
+    background: #1a1919;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.right-box h2 {
+    color: #6d5cff;
+    margin-bottom: 25px;
+}
+
+/* Formulario */
+.form {
+    width: 100%;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    outline: none;
+    background: #f5f5f5;
+}
+
+/* Opciones remember y forgot */
+.options {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.options a {
+    text-decoration: none;
+    color: #6d5cff;
+    font-size: 14px;
+}
+
+/* Botón */
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #049ff8, #07fcef);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-login:hover {
+    opacity: 0.9;
+}
+

@@ -1,0 +1,160 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    background: #f1f1f1;
+    color: #222;
+.menu {
+   transform: translateY(-12px) scale(1.04);
+    box-shadow: 0 25px 50px rgba(2, 117, 129, 0.6);
+    background: rgba(1, 64, 71, 0.801);
+
+
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.menu ul li a:hover {
+    color: #00b7ff;
+}
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #101011;
+  text-align: center;
+}
+
+/* HEADER */
+header {
+  padding: 40px 20px;
+  background: linear-gradient(120deg, #1c1c1d, #0b98eb);
+  color: white;
+}
+
+/* CONTENEDOR */
+.cards {
+  max-width: 1200px;
+  margin: 80px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+
+/* TARJETA */
+.card {
+  width: 260px;
+  height: 300px;
+  perspective: 1000px;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s ease;
+  transform-style: preserve-3d;
+}
+
+.card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* CARAS */
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  backface-visibility: hidden;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+/* FRENTE */
+.card-front {
+  background: rgb(3, 72, 94);
+}
+
+.card-front img {
+  width: 140px;
+}
+
+/* ATRÁS */
+.card-back {
+  background: rgb(114, 241, 182);
+  transform: rotateY(180deg);
+}
+
+.card-back h2 {
+  color: #2b6cb0;
+  margin-bottom: 15px;
+}
+
+.card-back p {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.5;
+}
+ 
+/* Botón */
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #049ff8, #07fcef);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+.btn-container{
+  text-align:center;
+  margin-top:20px;
+}
+
+.btn-main{
+  padding:14px 35px;
+  font-size:1.1em;
+  font-weight:600;
+  border:none;
+  border-radius:40px;
+  cursor:pointer;
+  color:#00eaff;
+  background:linear-gradient(135deg,#022b3a,#045d7a);
+  box-shadow:0 0 15px rgba(0,234,255,.5);
+  transition:.3s;
+}
+
+.btn-main:hover{
+  transform:scale(1.08);
+  box-shadow:0 0 25px rgba(0,234,255,.8);
+  background:linear-gradient(135deg,#045d7a,#022b3a);
+}
+
+.btn-main:active{
+  transform:scale(0.96);
+}

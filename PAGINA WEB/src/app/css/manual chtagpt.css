@@ -1,0 +1,138 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    background: #f1f1f1;
+    color: #222;
+.menu {
+   transform: translateY(-12px) scale(1.04);
+    box-shadow: 0 25px 50px rgba(2, 117, 129, 0.6);
+    background: rgba(1, 64, 71, 0.801);
+
+
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.menu ul li a:hover {
+    color: #00b7ff;
+}
+}body{
+  margin:0;
+  font-family:Segoe UI, sans-serif;
+  background:radial-gradient(circle at top,#0c5b7d,#021620);
+  color:white;
+}
+
+.top{
+  text-align:center;
+  padding:40px 0;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
+  padding:40px;
+  max-width:1100px;
+  margin:auto;
+}
+
+.flip-card{ perspective:1000px; }
+
+.flip-inner{
+  height:260px;
+  transition:.8s;
+  transform-style:preserve-3d;
+}
+
+.flip-card:hover .flip-inner{
+  transform:rotateY(180deg);
+}
+
+.flip-front,.flip-back{
+  position:absolute;
+  width:100%;
+  height:100%;
+  border-radius:18px;
+  background:#083b52;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:25px;
+  text-align:center;
+  box-shadow:0 15px 40px rgba(0,0,0,.5);
+  backface-visibility:hidden;
+}
+
+.flip-front h3{ color:#00eaff; }
+
+.flip-back{
+  transform:rotateY(180deg);
+  background:#052b3c;
+}
+BUTTON{
+  position:fixed;
+  top:20px;
+  left:20px;
+  background:#00eaff;
+  color:#021620;
+  padding:10px 15px;
+  border:none;
+  border-radius:8px;
+  font-size:16px;
+  font-weight:bold;
+  text-decoration:none;
+  box-shadow:0 8px 15px rgba(0,0,0,.2);
+}
+/* Botón */
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #049ff8, #07fcef);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+.btn-container{
+  text-align:center;
+  margin-top:20px;
+}
+
+.btn-main{
+  padding:14px 35px;
+  font-size:1.1em;
+  font-weight:600;
+  border:none;
+  border-radius:40px;
+  cursor:pointer;
+  color:#00eaff;
+  background:linear-gradient(135deg,#022b3a,#045d7a);
+  box-shadow:0 0 15px rgba(0,234,255,.5);
+  transition:.3s;
+}
+
+.btn-main:hover{
+  transform:scale(1.08);
+  box-shadow:0 0 25px rgba(0,234,255,.8);
+  background:linear-gradient(135deg,#045d7a,#022b3a);
+}
+
+.btn-main:active{
+  transform:scale(0.96);
+}
