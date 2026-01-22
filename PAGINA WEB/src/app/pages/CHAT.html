@@ -2,41 +2,50 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Chat Bot con Calculadora</title>
+    <title>Chat con IA Suprema</title>
     <link rel="stylesheet" href="../css/CHAT.css">
-     
 </head>
 
-     
 <body>
 
-
-
+<header>
+    <nav class="menu">
+        <ul>
+            <li><a href="inicio.html">Inicio</a></li>
+            <li><a href="sobre.html">Sobre la IA</a></li>
+            <li><a href="CHAT.html">Chat con IA local</a></li>
+            <li><a href="IMAGENES.HTML">Imágenes</a></li>
+            <li><a href="juego.html">Juego de IA</a></li>
+        </ul>
+    </nav>
+</header>
 
 <div class="container">
-    
- 
 
-    <!-- Preguntas -->
+    <!-- COMANDOS -->
     <div class="questions">
-        <h3>Preguntas</h3>
+        <h3>Comandos IA</h3>
         <div class="question" onclick="sendPredefined('hola')">Hola</div>
         <div class="question" onclick="sendPredefined('¿cómo estás?')">¿Cómo estás?</div>
         <div class="question" onclick="sendPredefined('adiós')">Adiós</div>
     </div>
 
-    <!-- Chat -->
+    <!-- CHAT -->
     <div id="chat-container">
+        <div class="ai-status">● IA ONLINE — SISTEMA SUPREMO</div>
         <div id="chat"></div>
+        <div id="typing" class="typing-indicator">IA procesando...</div>
+
         <div class="input-area">
-            <input type="text" id="userInput" placeholder="Escribe o usa la calculadora">
+            <input type="text" id="userInput" placeholder="Habla o escribe un comando">
             <button onclick="sendMessage()">Enviar</button>
+            <button onclick="startVoice()">🎙️</button>
         </div>
     </div>
 
-    <!-- Calculadora -->
+    <!-- CALCULADORA -->
     <div class="calculator">
-        <h3>Calculadora</h3>
+        <h3>Calculadora IA</h3>
         <div class="calc-grid">
             <button onclick="addCalc('7')">7</button>
             <button onclick="addCalc('8')">8</button>
@@ -66,19 +75,6 @@
 
 </div>
 
- <header>
-        <nav class="menu">
-        <ul>
-            <li><a href="inicio.html">Inicio</a></li>
-            <li><a href="sobre.html">Sobre la IA</a></li>
-            <li><a href="CHAT.html">Chat con IA local</a></li>
-
-            <li><a href="IMAGENES.HTML">imagenes</a></li>
-            <li><a href="juego.html">juego de IA</a></li>
-        </ul>
-    </nav>
-    </header>
-    
 <script src="../js/IA.js"></script>
 </body>
 </html>
