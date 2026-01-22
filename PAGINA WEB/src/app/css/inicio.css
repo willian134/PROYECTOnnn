@@ -94,9 +94,11 @@ header {
   padding: 20px;
 }
 
+
 /* FRENTE */
 .card-front {
   background: rgb(3, 72, 94);
+}
 }
 
 .card-front img {
