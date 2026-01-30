@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Juego IA Educativo</title>
+<link rel="stylesheet" href="../css/juegos.css">
+</head>
+
+<body>
+
+<h1 class="title">🎲 Juego de Inteligencia Artificial</h1>
+
+<header>
+<nav class="menu">
+<ul>
+<li><a href="inicio.html">Inicio</a></li>
+<li><a href="sobre.html">Sobre la IA</a></li>
+<li><a href="CHAT.html">Chat con IA local</a></li>
+<li><a href="juego.html">Juego de IA</a></li>
+<li><a href="IMAGENES.HTML">Imagenes</a></li>
+</ul>
+</nav>
+</header>
+
+<div class="game-area">
+<div id="board" class="board"></div>
+
+<div class="controls">
+<div id="dice" class="dice">⚀</div>
+<button id="rollBtn">🎲 Tirar Dado</button>
+
+<p>Jugador: <span id="playerPos">1</span></p>
+<p>Máquina: <span id="aiPos">1</span></p>
+
+<div class="info">
+Nivel: <span id="level">1</span> |
+Turno: <span id="turn">Jugador</span> |
+Puntaje: <span id="score">0</span>
+</div>
+</div>
+</div>
+
+<div id="questionModal" class="modal hidden">
+<div class="modal-content">
+<h2 id="questionText"></h2>
+<div id="options"></div>
+<p id="feedback"></p>
+<button id="continueBtn">Continuar</button>
+</div>
+</div>
+
+<script src="../js/juego.js"></script>
+</body>
+</html>
