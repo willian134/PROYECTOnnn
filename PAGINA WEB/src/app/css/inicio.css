@@ -46,7 +46,7 @@ body {
 /* HEADER */
 header {
   padding: 40px 20px;
-  background: linear-gradient(120deg, #1c1c1d, #0b98eb);
+  background: linear-gradient(120deg, #1c1c1d, #05858a);
   color: white;
 }
 
@@ -105,7 +105,7 @@ header {
 
 /* ATRÁS */
 .card-back {
-  background: rgb(114, 241, 182);
+  background: rgb(4, 163, 163);
   transform: rotateY(180deg);
 }
 

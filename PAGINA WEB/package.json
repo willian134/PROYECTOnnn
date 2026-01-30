@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:restaurante": "node dist/restaurante/server/server.mjs"
-  },
+    
+      },
   "prettier": {
     "printWidth": 100,
     "singleQuote": true,
