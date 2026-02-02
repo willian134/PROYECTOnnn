@@ -14,7 +14,7 @@ body{
 /* HEADER */
 header{
   text-align:center;
-  padding:50px 20px;
+  padding:20px 100px;
 }
 
 header h1{
@@ -24,9 +24,9 @@ header h1{
 
 /* INTRO */
 .intro{
-  max-width:900px;
+  max-width:700px;
   margin:auto;
-  padding:40px;
+  padding:20px;
   text-align:center;
 }
 
@@ -129,91 +129,150 @@ body {
 .menu ul li a:hover {
     color: #00f7ff;
 }
-/* ===============================
-   HEADER FLOTANTE (NO MUEVE CONTENIDO)
-================================ */
-.cyber-header {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  pointer-events: none;
-  z-index: 20;
+body{
+  margin:0;
+  padding:0;
 }
 
-.cyber-navbar {
-  position: absolute;
-  top: 25px;
-  right: 30px;
-  pointer-events: auto;
+.site-header{
+  width:100%;
+  background:linear-gradient(90deg,#020617,#0b1120);
+  border-bottom:1px solid rgba(0,255,255,.2);
 }
 
 /* ===============================
-   BARRA PRINCIPAL
+   NAVBAR
 ================================ */
-.cyber-navbar .nav-bar {
-  display: flex;
-  align-items: center;
-  gap: 25px;
-  background: linear-gradient(90deg, #0b1120, #020617);
-  padding: 12px 20px;
-  border-radius: 40px;
-  box-shadow: 0 0 20px rgba(56,189,248,0.35);
-  backdrop-filter: blur(10px);
+.cyber-navbar{
+  max-width:1200px;
+  margin:auto;
+  padding:12px 20px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  background:linear-gradient(90deg,#020617,#020617);
+  border-radius:40px;
+  box-shadow:
+    0 0 10px rgba(0,255,255,.4),
+    0 0 25px rgba(0,255,255,.25);
 }
 
 /* ===============================
    LOGO
 ================================ */
-.cyber-navbar .nav-logo {
-  background: linear-gradient(135deg, #38bdf8, #8b5cf6);
-  color: #020617;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  box-shadow: 0 0 10px rgba(139,92,246,0.7);
+.logo{
+  font-size:28px;
+  color:#00ffff;
+  text-shadow:0 0 10px #00ffff;
 }
 
 /* ===============================
-   MENÚ
+   LINKS
 ================================ */
-.cyber-navbar .nav-menu {
-  display: flex;
-  list-style: none;
-  gap: 25px;
-  padding: 0;
-  margin: 0;
+.nav-links{
+  list-style:none;
+  display:flex;
+  gap:28px;
 }
 
-.cyber-navbar .nav-menu a {
-  color: #e5e7eb;
-  text-decoration: none;
-  font-size: 14px;
-  padding: 6px 16px;
-  border-radius: 20px;
-  transition: 0.3s;
+.nav-links a{
+  color:#bffcff;
+  text-decoration:none;
+  font-weight:500;
+  padding:6px 12px;
+  border-radius:20px;
+  transition:.3s;
 }
 
-/* Hover futurista */
-.cyber-navbar .nav-menu a:hover {
-  background: linear-gradient(90deg, #38bdf8, #8b5cf6);
-  color: #020617;
-  box-shadow: 0 0 10px rgba(56,189,248,0.6);
+.nav-links a:hover{
+  background:rgba(0,255,255,.12);
+  color:#00ffff;
+  box-shadow:0 0 12px rgba(0,255,255,.8);
 }
 
 /* ===============================
-   EMAIL
+   USUARIO
 ================================ */
-.cyber-navbar .nav-user {
-  background: linear-gradient(90deg, #38bdf8, #8b5cf6);
-  color: #020617;
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 600;
-  box-shadow: 0 0 10px rgba(139,92,246,0.6);
+.user-menu{
+  position:relative;
+}
+
+.user-btn{
+  padding:8px 18px;
+  border-radius:30px;
+  background:linear-gradient(90deg,#1e3a8a,#06b6d4);
+  color:white;
+  font-weight:500;
+  cursor:pointer;
+  box-shadow:
+    0 0 10px #00ffff,
+    0 0 25px rgba(0,255,255,.6);
+}
+
+/* ===============================
+   DROPDOWN
+================================ */
+.user-dropdown{
+  position:absolute;
+  top:120%;
+  right:0;
+  width:190px;
+  background:#020617;
+  border-radius:15px;
+  box-shadow:
+    0 0 20px rgba(0,255,255,.7);
+  overflow:hidden;
+
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(10px);
+  transition:.3s;
+}
+
+/* ===============================
+   OPCIONES
+================================ */
+.user-dropdown a{
+  display:block;
+  padding:14px;
+  color:#bffcff;
+  text-decoration:none;
+  transition:.3s;
+}
+
+.user-dropdown a:hover{
+  background:rgba(0,255,255,.15);
+  color:#00ffff;
+}
+
+/* ===============================
+   MOSTRAR MENÚ
+================================ */
+.user-menu:hover .user-dropdown{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+}
+.hero{
+  text-align: center;
+  margin-top: 20px;
+}
+
+.hero h1{
+  color:white;
+  font-size:48px;
+  letter-spacing:2px;
+}
+
+.hero p{
+  color:#9ffcff;
+  margin-top:10px;
+}
+.intro{
+  max-width:700px;
+  margin:auto;
+  padding:20px;
+  text-align:center;
 }

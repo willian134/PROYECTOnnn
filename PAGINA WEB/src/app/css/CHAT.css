@@ -102,7 +102,7 @@ body {
 }
 
 .user {
-    color: #00f7ff;
+    color: #0af090;
     text-align: right;
 }
 
@@ -179,4 +179,192 @@ body {
 }
 .hacker-mode .message {
     color: #00ff00 !important;
+}
+.clear-chat{
+  background:#ff0033;
+  border:none;
+  padding:8px 16px;
+  color:white;
+  border-radius:10px;
+  cursor:pointer;
+  box-shadow:0 0 10px red;
+  margin-bottom:10px;
+}
+
+.clear-chat:hover{
+  background:#ff3355;
+  box-shadow:0 0 20px red;
+}
+/* MENÚ */
+.menu ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.menu ul li a:hover {
+    color: #00f7ff;
+}
+body{
+  margin:0;
+  padding:0;
+}
+
+.site-header{
+  width:100%;
+  background:linear-gradient(90deg,#020617,#0b1120);
+  border-bottom:1px solid rgba(0,255,255,.2);
+}
+
+/* ===============================
+   NAVBAR
+================================ */
+.cyber-navbar{
+  max-width:1200px;
+  margin:auto;
+  padding:12px 20px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  background:linear-gradient(90deg,#020617,#020617);
+  border-radius:40px;
+  box-shadow:
+    0 0 10px rgba(0,255,255,.4),
+    0 0 25px rgba(0,255,255,.25);
+}
+
+/* ===============================
+   LOGO
+================================ */
+.logo{
+  width: 10px;   /* ⬅ cambia este valor */
+  height: 10px; /* mantiene proporción */
+}
+.logo{
+      width: 10px;   /* ⬅ cambia este valor */
+  height: auto; /* mantiene proporción */
+
+
+  font-size:10px;
+  color:#00ffff;
+  text-shadow:0 0 0px #00ffff;
+}
+
+/* ===============================
+   LINKS
+================================ */
+.nav-links{
+  list-style:none;
+  display:flex;
+  gap:28px;
+}
+
+.nav-links a{
+  color:#bffcff;
+  text-decoration:none;
+  font-weight:500;
+  padding:6px 12px;
+  border-radius:20px;
+  transition:.3s;
+}
+
+.nav-links a:hover{
+  background:rgba(0,255,255,.12);
+  color:#00ffff;
+  box-shadow:0 0 12px rgba(0,255,255,.8);
+}
+
+/* ===============================
+   USUARIO
+================================ */
+.user-menu{
+  position:relative;
+}
+
+.user-btn{
+  padding:8px 18px;
+  border-radius:30px;
+  background:linear-gradient(90deg,#1e3a8a,#06b6d4);
+  color:white;
+  font-weight:500;
+  cursor:pointer;
+  box-shadow:
+    0 0 10px #00ffff,
+    0 0 25px rgba(0,255,255,.6);
+}
+
+/* ===============================
+   DROPDOWN
+================================ */
+.user-dropdown{
+  position:absolute;
+  top:120%;
+  right:0;
+  width:190px;
+  background:#020617;
+  border-radius:15px;
+  box-shadow:
+    0 0 20px rgba(0,255,255,.7);
+  overflow:hidden;
+
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(10px);
+  transition:.3s;
+}
+
+/* ===============================
+   OPCIONES
+================================ */
+.user-dropdown a{
+  display:block;
+  padding:14px;
+  color:#bffcff;
+  text-decoration:none;
+  transition:.3s;
+}
+
+.user-dropdown a:hover{
+  background:rgba(0,255,255,.15);
+  color:#00ffff;
+}
+
+/* ===============================
+   MOSTRAR MENÚ
+================================ */
+.user-menu:hover .user-dropdown{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+}
+.hero{
+  text-align: center;
+  margin-top: 20px;
+}
+
+.hero h1{
+  color:white;
+  font-size:48px;
+  letter-spacing:2px;
+}
+
+.hero p{
+  color:#9ffcff;
+  margin-top:10px;
+}
+.intro{
+  max-width:700px;
+  margin:auto;
+  padding:20px;
+  text-align:center;
 }

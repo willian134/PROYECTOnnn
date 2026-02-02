@@ -12,3 +12,4 @@ function mostrarImagen(opcion) {
 
     img.src = imagenes[opcion];
 }
+//

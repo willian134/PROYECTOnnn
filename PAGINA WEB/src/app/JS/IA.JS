@@ -11,16 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "default": "Comando recibido. Procesando respuesta."
     };
 
-    /* CARGAR HISTORIAL */
-    const saved = localStorage.getItem("chatHistory");
-    if (saved) chat.innerHTML = saved;
-
-    input.addEventListener("keydown", e => {
-        if (e.key === "Enter") {
-            sendMessage();
-            e.preventDefault();
-        }
-    });
+  
 
     window.sendMessage = function (text = null) {
         const message = text ?? input.value.trim();

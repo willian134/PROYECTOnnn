@@ -12,3 +12,4 @@ window.location.href="inicio.html";
 document.getElementById("msg").innerText="Datos incorrectos";
 }
 }
+//

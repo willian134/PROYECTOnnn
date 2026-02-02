@@ -1,46 +1,58 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Juego IA</title>
-<link rel="stylesheet" href="../css/juegos.css">
+  <meta charset="UTF-8">
+  <title>Juego IA</title>
+  <link rel="stylesheet" href="../css/juegos.css">
 </head>
 <body>
-<div class="cyber-header">
-  <header class="cyber-navbar">
-    <div class="nav-bar">
-      <div class="nav-logo">🤖</div>
+   <nav class="cyber-navbar">
 
-      <ul class="nav-menu">
-        <li><a href="inicio.html">Inicio</a></li>
-        <li><a href="sobr.html">Sobre la IA</a></li>
-        <li><a href="CHAT.html">Chat</a></li>
-        <li><a href="IMAGENES.HTML">Imágenes</a></li>
-        <li><a href="juego.html">Juego</a></li>
-      </ul>
-
-      <div class="nav-user">hyact@gmail.com</div>
+    <div class="logo">
+      
+      <img src="https://png.pngtree.com/png-vector/20241030/ourmid/pngtree-cybersecurity-digital-lock-icon-png-image_14163434.png" alt="Logo" style="width: 80px; height: auto;">
     </div>
-  </header>
+
+    <ul class="nav-links">
+      <li><a href="inicio.html">Inicio</a></li>
+      <li><a href="sobr.html">Sobre la IA</a></li>
+      <li><a href="CHAT.html">Chat</a></li>
+      <li><a href="imagenes.html">Imágenes</a></li>
+      <li><a href="juego.html">Juego</a></li>
+    </ul>
+
+    <div class="user-menu">
+      <div class="user-btn">
+        👤 Usuario
+      </div>
+
+      <div class="user-dropdown">
+        <a href="registro.html">Registro</a>
+        <a href="login.html"> Iniciar sesión</a>
+      </div>
+    </div>
+
+  </nav>
+
+<div id="inicio">
+  <h1>🎮 Juego de Inteligencia Artificial</h1>
+  <button onclick="iniciarJuego('cpu')">🤖 Vs Máquina</button>
+  <button onclick="iniciarJuego('2p')">👥 2 Jugadores</button>
 </div>
 
-<h1>🎲 Juego de Inteligencia Artificial</h1>
-
-
-<div class="menu">
-<button id="twoPlayers">2 Jugadores</button>
-<button id="vsCPU">Vs Máquina</button>
+<div id="juego" class="oculto">
+  <h2 id="turnoTexto">Turno: Goku</h2>
+  <button onclick="lanzarDado()">🎲 Lanzar dado</button>
+  <p>Dado: <span id="dado">0</span></p>
+  <div id="tablero"></div>
 </div>
 
-<button id="rollDice">Lanzar Dado</button>
-<h2 id="diceValue">0</h2>
+<div id="overlay" class="oculto"></div>
 
-<div id="board"></div>
-
-<div id="questionBox">
-<h2 id="questionText"></h2>
-<div id="options"></div>
-<p id="feedback"></p>
+<div id="preguntaBox" class="oculto">
+  <h3 id="pregunta"></h3>
+  <div id="opciones"></div>
+  <p id="feedback"></p>
 </div>
 
 <script src="../JS/juego.js"></script>

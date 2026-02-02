@@ -19,3 +19,4 @@ localStorage.setItem("pass",pass);
 alert("Registro exitoso");
 window.location.href="login.html";
 });
+//
