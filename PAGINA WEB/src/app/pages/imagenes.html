@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    
+    <meta charset="UTF-8">
+    <title>Panel IA - Imágenes</title>
+    
+    <link rel="stylesheet" href="../css/imagenes.css">
+</head>
+<body>
+          <li><a href="inicio.html">Inicio</a></li>
+          
+            <li><a href="CHAT.html">Chat con IA local</a></li>
+ 
+            <li><a href="juego.html">Juego de IA</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="container">
+
+    <!-- PANEL IZQUIERDO -->
+    <div class="menu">
+        
+        <h3>Imágenes</h3>
+        <button onclick="mostrarImagen('ronaldo')">Cristiano Ronaldo</button>
+        <button onclick="mostrarImagen('messi')">Leo Messi</button>
+        <button onclick="mostrarImagen('caicedo')">Moisés Caicedo</button>
+        <button onclick="mostrarImagen('dbz')">Dragon Ball Z</button>
+        <button onclick="mostrarImagen('naruto')">Naruto</button>
+         <button onclick="mostrarImagen('onepiece')">ONE PIECE</button>
+    </div>
+
+    <!-- PANEL DERECHO -->
+    <div class="panel">
+        
+        <h2>Visor de Imágenes</h2>
+        <img id="imagenMostrada" src="" alt="Selecciona una opción">
+    </div>
+
+</div>
+
+<script src="../JS/imagenes.js"></script>
+</body>
+</html>
