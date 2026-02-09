@@ -1,15 +1,45 @@
-function mostrarImagen(opcion) {
-    const img = document.getElementById("imagenMostrada");
+const SERVER_URL = "https://holy-salad-1d51.weorellana.workers.dev";
 
-    const imagenes = {
-        ronaldo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR61GIS1HdYLSnZatxHOgSjaVBbfQVQL3BfUg&s",
-        messi: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYhUrFEDABYvSCborRdUL3wyTmIJCltnCUnw&s",
-        caicedo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYDE8I4tL06NDCaRi3NFEw-f4NM9TB_wrMNw&s",
-        dbz: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDKmPkKz7qe4UF0X5eHIFM1Qwe-AY2bRaq6g&s",
-        naruto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiccwKj3fabqP1EGVJgaVGN4Bvaaxdy64fTg&s",
-        onepiece: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJopumdH_yyA_dhyMivCaor3P954b8PeeSTQ&s"
-    };
 
-    img.src = imagenes[opcion];
-}
-//
+const genBtn = document.getElementById("genBtn");
+const img = document.getElementById("imgResult");
+const downloadBtn = document.getElementById("downloadBtn");
+
+genBtn.onclick = async () => {
+  const prompt = document.getElementById("prompt").value;
+
+  if(prompt.trim() === ""){
+    alert("Escribe una descripción");
+    return;
+  }
+
+  genBtn.textContent = "Generando...";
+  genBtn.disabled = true;
+
+  try {
+    const res = await fetch(SERVER_URL, {
+      method:"POST",
+      headers:{ "Content-Type":"application/json" },
+      body: JSON.stringify({ prompt })
+    });
+
+    const data = await res.json();
+
+    img.src = data.image;
+    img.style.display="block";
+    downloadBtn.style.display="block";
+
+  } catch (err) {
+    alert("Error al conectar con el servidor");
+  }
+
+  genBtn.textContent = "Generar Imagen";
+  genBtn.disabled = false;
+};
+
+downloadBtn.onclick = () => {
+  const a = document.createElement("a");
+  a.href = img.src;
+  a.download = "xchatgpt-image.png";
+  a.click();
+};

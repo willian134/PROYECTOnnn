@@ -1,45 +1,310 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    
-    <meta charset="UTF-8">
-    <title>Panel IA - Imágenes</title>
-    
-    <link rel="stylesheet" href="../css/imagenes.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat IA + Generador Imágenes</title>
+<style>
+/* RESET */
+body{margin:0;padding:0;font-family:Arial,sans-serif;background:#0f0f1a;color:#fff;display:flex;flex-direction:column;}
+
+/* NAVBAR */
+.site-header{width:100%;background:linear-gradient(90deg,#020617,#0b1120);border-bottom:1px solid rgba(0,255,255,.2);}
+.cyber-navbar{max-width:1200px;margin:auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(90deg,#020617,#020617);border-radius:40px;box-shadow:0 0 10px rgba(0,255,255,.4),0 0 25px rgba(0,255,255,.25);}
+.logo{font-size:28px;color:#00ffff;text-shadow:0 0 10px #00ffff;}
+.nav-links{list-style:none;display:flex;gap:28px;}
+.nav-links a{color:#bffcff;text-decoration:none;font-weight:500;padding:6px 12px;border-radius:20px;transition:.3s;}
+.nav-links a:hover{background:rgba(0,255,255,.12);color:#00ffff;box-shadow:0 0 12px rgba(0,255,255,.8);}
+.user-menu{position:relative;}
+.user-btn{padding:8px 18px;border-radius:30px;background:linear-gradient(90deg,#1e3a8a,#06b6d4);color:white;font-weight:500;cursor:pointer;box-shadow:0 0 10px #00ffff,0 0 25px rgba(0,255,255,.6);}
+.user-dropdown{position:absolute;top:120%;right:0;width:190px;background:#020617;border-radius:15px;box-shadow:0 0 20px rgba(0,255,255,.7);overflow:hidden;opacity:0;visibility:hidden;transform:translateY(10px);transition:.3s;}
+.user-dropdown a{display:block;padding:14px;color:#bffcff;text-decoration:none;transition:.3s;}
+.user-dropdown a:hover{background:rgba(0,255,255,.15);color:#00ffff;}
+.user-menu:hover .user-dropdown{opacity:1;visibility:visible;transform:translateY(0);}
+
+/* HERO */
+.hero{text-align:center;margin:20px;}
+.hero h1{color:white;font-size:48px;letter-spacing:2px;}
+.hero p{color:#9ffcff;margin-top:10px;}
+.intro{max-width:700px;margin:auto;padding:20px;text-align:center;}
+
+/* CHAT + PANEL */
+.container{display:flex;gap:20px;padding:20px;}
+.panel, .panel-right{width:280px;background:rgba(30,30,50,0.95);border-radius:12px;padding:15px;box-shadow:0 0 20px rgba(0,0,0,0.5);overflow-y:auto;max-height:80vh;}
+.panel h3, .panel-right h3{color:#ffcc00;text-align:center;margin-bottom:10px;}
+.category-button{width:100%;padding:8px;margin:5px 0;border:none;border-radius:8px;background:#1a1a33;color:#ffcc00;font-weight:bold;cursor:pointer;transition:0.2s;}
+.category-button:hover{background:#2a2a50;}
+.panel p, .fragment{padding:8px 10px;margin:5px 0;background:#1a1a33;border-radius:8px;cursor:grab;user-select:none;display:flex;align-items:center;gap:8px;transition:0.2s;}
+.panel p::before, .fragment::before{content:"⠿";color:#ffcc00;font-weight:bold;}
+.panel p:hover, .fragment:hover{background:#2a2a50;transform:scale(1.02);}
+.chat-area{flex:1;display:flex;flex-direction:column;height:80vh;}
+textarea{width:100%;height:80px;border-radius:8px;border:none;padding:10px;margin-top:10px;resize:none;}
+button#sendButton{width:100%;padding:12px;margin-top:10px;background:#ffcc00;color:#000;font-weight:bold;border:none;border-radius:8px;cursor:pointer;}
+#chatOutput{margin-top:15px;background:#1a1a33;padding:15px;border-radius:8px;flex:1;overflow-y:auto;display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-start;}
+.chat-fragment{background:#2a2a50;padding:15px;border-radius:8px;text-align:left;min-width:80px;min-height:50px;cursor:default;white-space:pre-wrap;}
+
+/* ===============================
+   IMÁGENES EN EL CHAT AJUSTADAS
+================================ */
+.chat-image {
+  width: 100%;
+  min-height: 200px;
+  max-height: 400px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+.chat-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: CENTER; /* Ocupa todo el cuadro */
+  border: 2px solid #ffcc00;
+  border-radius: 8px;
+}
+</style>
 </head>
 <body>
-          <li><a href="inicio.html">Inicio</a></li>
-          
-            <li><a href="CHAT.html">Chat con IA local</a></li>
- 
-            <li><a href="juego.html">Juego de IA</a></li>
-        </ul>
-    </nav>
+
+<!-- HEADER NAVBAR -->
+<header class="site-header">
+  <nav class="cyber-navbar">
+    <div class="logo">IA Chat</div>
+    <ul class="nav-links">
+      <li><a href="inicio.html">Inicio</a></li>
+      <li><a href="sobr.html">Sobre la IA</a></li>
+      <li><a href="CHAT.html">Chat de IA</a></li>
+      <li><a href="juego.html">Juego de IA</a></li>
+      <li><a href="imagenes.html">Imágenes IA</a></li>
+    </ul>
+    <div class="user-menu">
+      <div class="user-btn">👤 Usuario</div>
+      <div class="user-dropdown">
+        <a href="registro.html">Registro</a>
+        <a href="login.html">Iniciar sesión</a>
+      </div>
+    </div>
+  </nav>
 </header>
 
-<div class="container">
-
-    <!-- PANEL IZQUIERDO -->
-    <div class="menu">
-        
-        <h3>Imágenes</h3>
-        <button onclick="mostrarImagen('ronaldo')">Cristiano Ronaldo</button>
-        <button onclick="mostrarImagen('messi')">Leo Messi</button>
-        <button onclick="mostrarImagen('caicedo')">Moisés Caicedo</button>
-        <button onclick="mostrarImagen('dbz')">Dragon Ball Z</button>
-        <button onclick="mostrarImagen('naruto')">Naruto</button>
-         <button onclick="mostrarImagen('onepiece')">ONE PIECE</button>
-    </div>
-
-    <!-- PANEL DERECHO -->
-    <div class="panel">
-        
-        <h2>Visor de Imágenes</h2>
-        <img id="imagenMostrada" src="" alt="Selecciona una opción">
-    </div>
-
+<!-- HERO -->
+<div class="hero">
+  <h1>Chat IA + Generador de Imágenes</h1>
+  <p>Arrastra preguntas o fragmentos al chat para obtener respuestas o imágenes.</p>
 </div>
 
-<script src="../JS/imagenes.js"></script>
+<!-- CHAT + PANEL -->
+<div class="container">
+  <!-- PANEL IZQUIERDO -->
+  <div class="panel" id="panelIA">
+    <h3>Preguntas IA</h3>
+    <button class="category-button" onclick="showQuestions('matematicas')">Matemáticas</button>
+    <button class="category-button" onclick="showQuestions('programacion')">Programación</button>
+    <button class="category-button" onclick="showQuestions('ia')">Inteligencia Artificial</button>
+    <button class="category-button" onclick="showQuestions('chatgpt')">ChatGPT</button>
+    <button class="category-button" onclick="showQuestions('gemini')">Gemini</button>
+    <div id="questionList"></div>
+  </div>
+
+  <!-- CHAT AREA -->
+  <div class="chat-area">
+    <textarea id="userPrompt" placeholder="Arrastra aquí tu pregunta o fragmento"></textarea>
+    <button id="sendButton" onclick="procesar()">Enviar</button>
+    <div id="chatOutput"></div>
+  </div>
+
+  <!-- PANEL DERECHO -->
+  <div class="panel-right" id="panelFragmentos">
+    <h3>Fragmentos Imágenes</h3>
+    <button class="category-button" onclick="showFragments('dragonball')">Dragon Ball</button>
+    <button class="category-button" onclick="showFragments('futbol')">Fútbol</button>
+    <button class="category-button" onclick="showFragments('otros')">Otros Animes</button>
+    <button class="category-button" onclick="showFragments('memes')">Memes</button>
+    <div id="fragmentList"></div>
+  </div>
+</div>
+
+<script>
+// DRAG & DROP
+function drag(ev){
+  ev.dataTransfer.setData("text", ev.target.innerText);
+  ev.dataTransfer.setData("type", ev.target.dataset.type);
+  ev.dataTransfer.setData("value", ev.target.dataset.value || "");
+  ev.dataTransfer.setData("link", ev.target.dataset.link || "");
+}
+const textarea=document.getElementById("userPrompt");
+textarea.addEventListener("dragover",e=>e.preventDefault());
+textarea.addEventListener("drop",e=>{
+  e.preventDefault();
+  const data=e.dataTransfer.getData("text");
+  textarea.value=data;
+  textarea.dataset.type=e.dataTransfer.getData("type");
+  textarea.dataset.value=e.dataTransfer.getData("value");
+  textarea.dataset.link=e.dataTransfer.getData("link");
+});
+
+// PREGUNTAS LLENAS
+const questions={
+  matematicas:[
+    {q:"Qué es álgebra", a:"El álgebra estudia operaciones y relaciones entre símbolos y letras que representan números."},
+    {q:"Qué es cálculo", a:"El cálculo estudia derivadas, integrales y tasas de cambio."},
+    {q:"Teorema de Pitágoras", a:"a²+b²=c² en un triángulo rectángulo."},
+    {q:"Probabilidad básica", a:"Casos favorables / casos posibles."},
+    {q:"Funciones lineales", a:"y = mx + b, m=pendiente, b=intersección."},
+    {q:"Derivadas", a:"Mide la tasa de cambio instantánea."},
+    {q:"Integrales", a:"Área bajo la curva."},
+    {q:"Geometría analítica", a:"Figuras geométricas con coordenadas."},
+    {q:"Trigonometría", a:"Relaciones entre ángulos y lados."},
+    {q:"Matrices", a:"Tablas de números organizadas en filas y columnas."}
+  ],
+  programacion:[
+    {q:"Qué es JavaScript", a:"Lenguaje interpretado para web interactiva."},
+    {q:"Qué es Python", a:"Lenguaje versátil, usado en web, IA y ciencia de datos."},
+    {q:"Qué es un objeto", a:"Agrupa propiedades y métodos."},
+    {q:"Qué es recursión", a:"Función que se llama a sí misma."},
+    {q:"Errores comunes", a:"Sintaxis, variables indefinidas, bucles infinitos."},
+    {q:"Funciones", a:"Bloques de código reutilizables."},
+    {q:"Bucles", a:"Repetición de acciones: for, while."},
+    {q:"Variables", a:"Espacios de memoria para datos."},
+    {q:"Arrays", a:"Estructuras que almacenan múltiples valores."},
+    {q:"Condicionales", a:"Toman decisiones: if, else, switch."}
+  ],
+  ia:[
+    {q:"Qué es IA", a:"Sistemas capaces de realizar tareas que requieren inteligencia humana."},
+    {q:"Aprendizaje automático", a:"Máquinas aprenden patrones sin ser programadas explícitamente."},
+    {q:"Redes neuronales", a:"Modelos inspirados en el cerebro."},
+    {q:"IA generativa", a:"Crea contenido original: texto, imágenes, música."},
+    {q:"IA en medicina", a:"Diagnóstico y medicina personalizada."},
+    {q:"IA en educación", a:"Tutorías personalizadas y simulaciones."},
+    {q:"IA en deportes", a:"Analiza rendimiento y estrategias."},
+    {q:"Ética en IA", a:"Privacidad y decisiones justas."},
+    {q:"Automatización laboral", a:"Reemplazo de tareas repetitivas."},
+    {q:"Futuro de la IA", a:"Mejora creatividad, medicina y robótica."}
+  ],
+  chatgpt:[
+    {q:"Qué es ChatGPT", a:"Modelo de lenguaje de OpenAI para comprender y generar texto."},
+    {q:"Cómo funciona ChatGPT", a:"Redes neuronales entrenadas con grandes volúmenes de texto."},
+    {q:"Ventajas de ChatGPT", a:"Asistencia educativa, generación de código y soporte."},
+    {q:"Desventajas de ChatGPT", a:"Limitaciones de creatividad y posibles sesgos."},
+    {q:"Aplicaciones ChatGPT", a:"Chatbots, tutorías, generación de contenido."},
+    {q:"Seguridad ChatGPT", a:"Supervisar respuestas y manejar datos con ética."},
+    {q:"Limitaciones ChatGPT", a:"No tiene conciencia y puede dar respuestas incorrectas."},
+    {q:"ChatGPT vs Gemini", a:"ChatGPT: texto; Gemini: multimodal (texto, imágenes, audio)."},
+    {q:"Ejemplos ChatGPT", a:"Responder preguntas, generar historias, programar."},
+    {q:"Casos de uso ChatGPT", a:"Educación, soporte técnico, creatividad y automatización."}
+  ],
+  gemini:[
+    {q:"Qué es Gemini", a:"Sistema de IA multimodal: texto, imágenes y audio."},
+    {q:"Manual Gemini", a:"Instrucciones, comandos y formatos soportados."},
+    {q:"Ventajas de Gemini", a:"Generación multimodal de contenido."},
+    {q:"Desventajas de Gemini", a:"Mayor consumo de recursos y posibles errores."},
+    {q:"Aplicaciones Gemini", a:"Educación, multimedia, análisis de datos."},
+    {q:"Seguridad Gemini", a:"Validar respuestas y manejo ético de datos."},
+    {q:"Limitaciones Gemini", a:"Depende de datos y puede fallar en generación."},
+    {q:"Gemini vs ChatGPT", a:"Gemini: multimodal; ChatGPT: solo texto."},
+    {q:"Ejemplos Gemini", a:"Generación de imágenes y texto."},
+    {q:"Casos de uso Gemini", a:"Educación, entretenimiento, soporte multimodal."}
+  ]
+};
+
+function showQuestions(cat){
+  const list=document.getElementById("questionList");
+  list.innerHTML="";
+  questions[cat].forEach(q=>{
+    const p=document.createElement("p");
+    p.draggable=true;
+    p.dataset.type="pregunta";
+    p.dataset.value=q.q;
+    p.innerText=q.q;
+    p.ondragstart=drag;
+    list.appendChild(p);
+  });
+}
+
+// FRAGMENTOS IMAGENES
+const fragments={
+  dragonball:[
+    {name:"Goku Super Saiyajin", link:"https://tse1.mm.bing.net/th/id/OIP.MOD6Kkm4m-Ia48VofY7tyAHaJQ?w=736&h=920&rs=1&pid=ImgDetMain&o=7&rm=3"},
+    {name:"Vegeta Enojado", link:"https://tse2.mm.bing.net/th/id/OIP._a7GjelNLa6I8fnwFreUWAHaFL?rs=1&pid=ImgDetMain&o=7&rm=3"},
+    {name:"Gohan Niño", link:"https://i.pinimg.com/736x/e6/78/4f/e6784f3bca2bf810f3451e558198b353.jpg"},
+    {name:"Trunks Futuro", link:"https://tse4.mm.bing.net/th/id/OIP.-O6XFpWy5GSY6xRv6h7n0gHaEK?rs=1&pid=ImgDetMain&o=7&rm=3"},
+    {name:"Piccolo Serio", link:"https://tse1.mm.bing.net/th/id/OIP.jfeIBYXA0Foi5PU6E1RnxgHaEK?rs=1&pid=ImgDetMain&o=7&rm=3"}
+  ],
+  futbol:[
+    {name:"Messi Gol", link:"https://tse1.mm.bing.net/th/id/OIP.eSdjJmTDIeNVH7ziERMBJgHaE8?rs=1&pid=ImgDetMain&o=7&rm=3"},
+    {name:"Ronaldo Celebración", link:"https://wallpapercave.com/wp/wp2271188.jpg"},
+    {name:"Neymar Drible", link:"https://static1.purepeople.com.br/articles/2/10/67/42/@/1395862-neymar-ficou-entre-os-tres-finalistas-do-950x0-2.jpg"},
+    {name:"Mbappé Velocidad", link:"https://tse1.mm.bing.net/th/id/OIP.dNaUa36PyLv_AxA9DqfMQQHaEK?rs=1&pid=ImgDetMain&o=7&rm=3"}
+  ],
+  otros:[
+    {name:"Naruto Rasengan", link:"https://www.thedigitalfix.com/wp-content/sites/thedigitalfix/2023/03/naruto-uzumaki.jpg"},
+    {name:"Sasuke Chidori", link:"https://static1.cbrimages.com/wordpress/wp-content/uploads/2023/03/sasuke-chidori-blade.jpeg"},
+    {name:"Sakura Fuerza", link:"https://i.pinimg.com/736x/97/3d/89/973d893a31922e7698baa7f0538d0938.jpg"}
+  ],
+  memes:[
+    {name:"Meme Troll", link:"https://uploads.dailydot.com/2023/12/Troll-Face-Meme.jpg?auto=compress&fm=pjpg"},
+    {name:"Meme Risa", link:"https://tse1.explicit.bing.net/th/id/OIP.ruhM-0JNaogiwj6vm309uwHaEK?rs=1&pid=ImgDetMain&o=7&rm=3"},
+    {name:"Meme Fail", link:"https://i.pinimg.com/originals/e5/f8/63/e5f8636b38d6afc305905ece216443cf.jpg"}
+  ]
+};
+
+function showFragments(cat){
+  const list=document.getElementById("fragmentList");
+  list.innerHTML="";
+  fragments[cat].forEach(f=>{
+    const div=document.createElement("div");
+    div.className="fragment";
+    div.draggable=true;
+    div.dataset.type="fragment";
+    div.dataset.value=f.name;
+    div.dataset.link=f.link;
+    div.innerText=f.name;
+    div.ondragstart=drag;
+    list.appendChild(div);
+  });
+}
+
+// PROCESAR CHAT
+function procesar(){
+  const chatOutput=document.getElementById("chatOutput");
+  chatOutput.innerHTML="";
+
+  const text=textarea.value;
+  const type=textarea.dataset.type||"pregunta";
+  if(!text) return alert("Arrastra algo primero!");
+
+  if(type==="pregunta"){
+    let answer="";
+    Object.values(questions).flat().forEach(q=>{
+      if(q.q===text) answer=q.a;
+    });
+    const div=document.createElement("div");
+    div.className="chat-fragment";
+    div.innerText=answer||"No hay información disponible.";
+    chatOutput.appendChild(div);
+
+    // Voz IA
+    const utterance=new SpeechSynthesisUtterance(answer||"No hay información disponible.");
+    utterance.lang="es-ES";
+    speechSynthesis.speak(utterance);
+  } else if(type==="fragment"){
+    const value=textarea.dataset.value;
+    const link=textarea.dataset.link || "#";
+    const div=document.createElement("div");
+    div.className="chat-image";
+    div.innerHTML=`<img src="${link}">`;
+    chatOutput.appendChild(div);
+
+    // Voz IA
+    const utterance=new SpeechSynthesisUtterance(value);
+    utterance.lang="es-ES";
+    speechSynthesis.speak(utterance);
+  }
+
+  textarea.value="";
+  textarea.dataset.type="";
+  textarea.dataset.value="";
+  textarea.dataset.link="";
+}
+</script>
+
 </body>
 </html>
