@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Mini Mario Bros Educativo</title>
+<style>
+body {
+    background: radial-gradient(circle at top, #020c1b, #000);
+    color: #00fff7;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+#charSelector {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px auto;
+    max-width: 600px;
+    padding: 15px;
+    border: 2px solid #00fff7;
+    border-radius: 15px;
+}
+.charThumb {
+    width: 50px;
+    height: 50px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+}
+.charThumb.selected {
+    border-color: #00fff7;
+    box-shadow: 0 0 15px #00fff7;
+}
+#menu, #questionBox {
+    background: radial-gradient(circle at top, #020c1b, #000);
+    border-radius: 20px;
+    border: 2px solid #00fff7;
+    box-shadow: 0 0 25px #00fff7;
+    width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+}
+.levelButton {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    margin: 5px;
+    border-radius: 10px;
+    background: #001a2d;
+    border: 2px solid #00fff7;
+    color: #00fff7;
+    cursor: pointer;
+}
+.levelButton.locked {
+    border-color: #ff004c;
+    color: #ff004c;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+#gameContainer {
+    display: none;
+    position: relative;
+    width: 800px;
+    height: 400px;
+    margin: 20px auto;
+    border: 3px solid #333;
+    overflow: hidden;
+    background-size: cover;
+}
+#player {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.obstacle {
+    position: absolute;
+    bottom: 20px;
+    width: 70px;
+    height: 70px;
+    background-size: cover;
+}
+#door {
+    position: absolute;
+    bottom: 10px;
+    width: 80px;
+    height: 100px;
+    display: none;
+    background-size: cover;
+}
+.option {
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px;
+    background: #001a2d;
+    color: #00fff7;
+    border: 1px solid #00fff7;
+    cursor: pointer;
+}
+#neonFail {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+.neonBox {
+    border: 3px solid #00ffff;
+    padding: 40px;
+    border-radius: 20px;
+    background: #020c1b;
+}
+</style>
+</head>
+<body>
+
+<h1>Mini Mario Bros Educativo</h1>
+
+<div id="menu">
+    <h2>1. Elige tu Personaje</h2>
+    <div id="charSelector"></div>
+
+    <h2>2. Selecciona un Nivel</h2>
+    <div id="levelsContainer"></div>
+</div>
+
+<div id="gameContainer">
+    <div id="player"></div>
+    <div id="door"></div>
+</div>
+
+<div id="questionBox" style="display:none;">
+    <h3 id="qText"></h3>
+    <div id="qOptions"></div>
+</div>
+
+<div id="neonFail">
+    <div class="neonBox">
+        <h2>💥 FALLASTE</h2>
+        <button onclick="location.reload()">REINTENTAR</button>
+    </div>
+</div>
+
+<script>
+// ===== TUS LINKS ORIGINALES =====
+const charImages = [
+ "https://i.pinimg.com/originals/f5/75/2c/f5752c7c9f03832209f0bb8b57214281.gif",
+ "https://image.myanimelist.net/ui/u60Crn7tADGIKarVpy6ivEMh10_XVs0D1MgNb_41YGYlEDWQvQQaB_dvgKbakTyWBr3j7n8CDvR5jBQneGcbJg",
+ "https://media.tenor.com/GZBJyaDeJGQAAAAj/sonic-the-hegdehog-sonic.gif",
+ "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/75da5f11-dc9b-4dd7-a092-9002f227c0b1/dezhjhw-38d6e769-32d0-4277-8214-0ec75cdf4437.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi83NWRhNWYxMS1kYzliLTRkZDctYTA5Mi05MDAyZjIyN2MwYjEvZGV6aGpody0zOGQ2ZTc2OS0zMmQwLTQyNzctODIxNC0wZWM3NWNkZjQ0MzcuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.FZfv0E8LhQK23_Y72ngZ9ULFAclAXa4L5pxvw6piIFI",
+ "https://img1.picmix.com/output/stamp/normal/5/8/3/3/2653385_b651b.gif",
+ "https://i.gifer.com/2iiB.gif",
+ "https://i.gifer.com/4pX4.gif",
+ "https://i.gifer.com/7S79.gif",
+ "https://i.gifer.com/Origin.gif",
+ "https://i.gifer.com/4S0t.gif"
+];
+
+const backgrounds = [
+ "https://i.redd.it/hkea5obuda7b1.gif",
+ "https://i.imgur.com/kxYdHbL.jpg",
+ "https://i.imgur.com/6w3rUcx.jpg"
+];
+
+const enemyImages = [
+ "https://media.tenor.com/m5LG5U89sAQAAAAj/wake-up-chain-chomp.gif",
+ "https://i.pinimg.com/originals/74/34/67/7434678df2212e5b7aeedf5c35c36c0d.gif",
+ "https://media.tenor.com/93wDr1NQivsAAAAj/shy-shyguy.gif",
+ "https://i.pinimg.com/originals/49/68/08/496808ef2e9796a1e7557a372efd2d16.gif",
+ "https://media.tenor.com/B5FHgG3fICsAAAAj/zombi-con-bandera.gif"
+];
+
+// PUERTA (LINK)
+const doorImg = "https://static.wikia.nocookie.net/mario/images/d/d2/SMBCastle.png";
+
+// ===== PREGUNTAS IA =====
+const questions = [
+ {q:"¿Qué es ChatGPT?",o:["Un modelo de IA","Un videojuego","Un virus"],a:0},
+ {q:"¿Gemini es una IA de?",o:["Google","Meta","Apple"],a:0},
+ {q:"¿Qué significa IA?",o:["Inteligencia Artificial","Internet Avanzado","Imagen Automática"],a:0},
+ {q:"¿ChatGPT aprende con Machine Learning?",o:["Sí","No","Solo con WiFi"],a:0},
+ {q:"¿La IA puede generar textos?",o:["Sí","No","Solo números"],a:0},
+ {q:"¿Gemini puede analizar imágenes?",o:["Sí","No","Solo videos"],a:0},
+ {q:"¿La IA necesita datos?",o:["Sí","No","Solo electricidad"],a:0},
+ {q:"¿ChatGPT responde preguntas?",o:["Sí","No","Solo juega"],a:0},
+ {q:"¿La IA ayuda en educación?",o:["Sí","No","Nunca"],a:0},
+ {q:"¿ChatGPT es una IA conversacional?",o:["Sí","No","Es humano"],a:0}
+];
+
+let selectedAvatar = charImages[0];
+let unlockedLevels = [1];
+let currentLevel = 1;
+
+let playerLeft = 10;
+let playerBottom = 10;
+let isJumping = false;
+let doorVisible = false;
+
+let qIndex = 0;
+let correct = 0;
+
+// ===== PERSONAJES =====
+const selector = document.getElementById("charSelector");
+charImages.forEach((url, i) => {
+    const div = document.createElement("div");
+    div.className = "charThumb" + (i === 0 ? " selected" : "");
+    div.style.backgroundImage = `url('${url}')`;
+    div.onclick = () => {
+        document.querySelectorAll(".charThumb").forEach(d => d.classList.remove("selected"));
+        div.classList.add("selected");
+        selectedAvatar = url;
+    };
+    selector.appendChild(div);
+});
+
+// ===== MENU =====
+function updateMenu() {
+    const container = document.getElementById("levelsContainer");
+    container.innerHTML = "";
+    for(let i=1;i<=10;i++){
+        const btn = document.createElement("div");
+        btn.className = "levelButton" + (unlockedLevels.includes(i) ? "" : " locked");
+        btn.textContent = i;
+        btn.onclick = () => {
+            if(unlockedLevels.includes(i)) startLevel(i);
+        };
+        container.appendChild(btn);
+    }
+}
+updateMenu();
+
+// ===== INICIAR NIVEL =====
+function startLevel(level) {
+    currentLevel = level;
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("gameContainer").style.display = "block";
+
+    const game = document.getElementById("gameContainer");
+    const player = document.getElementById("player");
+    const door = document.getElementById("door");
+
+    player.style.backgroundImage = `url('${selectedAvatar}')`;
+    playerLeft = 10; playerBottom = 10;
+    player.style.left = playerLeft + "px";
+    player.style.bottom = playerBottom + "px";
+
+    game.style.backgroundImage = `url('${backgrounds[(level-1)%backgrounds.length]}')`;
+    door.style.backgroundImage = `url('${doorImg}')`;
+    door.style.display = "none";
+    doorVisible = false;
+
+    spawnEnemy();
+}
+
+// ===== ENEMIGOS =====
+function spawnEnemy() {
+    if(doorVisible) return;
+
+    const enemy = document.createElement("div");
+    enemy.className = "obstacle";
+    enemy.style.left = "1000px";
+    enemy.style.backgroundImage = `url('${enemyImages[Math.floor(Math.random()*enemyImages.length)]}')`;
+    document.getElementById("gameContainer").appendChild(enemy);
+
+    let left = 800;
+    let move = setInterval(() => {
+        left -= 5;
+        enemy.style.left = left + "px";
+
+        if(left < playerLeft + 60 && left > playerLeft && playerBottom < 90){
+            document.getElementById("neonFail").style.display = "flex";
+            clearInterval(move);
+        }
+
+        if(left < -50){
+            clearInterval(move);
+            enemy.remove();
+        }
+    }, 20);
+
+    setTimeout(() => {
+        doorVisible = true;
+        const door = document.getElementById("door");
+        door.style.display = "block";
+        door.style.left = "700px";
+    }, 12000);
+
+    setTimeout(spawnEnemy, 2000);
+}
+
+// ===== MOVIMIENTO ORIGINAL (NO CAMBIADO) =====
+document.addEventListener("keydown", e => {
+    if(e.code === "Space" && !isJumping) {
+        isJumping = true;
+        let up = setInterval(() => {
+            if(playerBottom >= 150) {
+                clearInterval(up);
+                let down = setInterval(() => {
+                    if(playerBottom <= 10) {
+                        clearInterval(down);
+                        isJumping = false;
+                    }
+                    playerBottom -= 5;
+                    document.getElementById("player").style.bottom = playerBottom + "px";
+                    checkWin();
+                }, 20);
+            }
+            playerBottom += 10;
+            document.getElementById("player").style.bottom = playerBottom + "px";
+            checkWin();
+        }, 20);
+    }
+
+    if(e.code === "ArrowRight") {
+        playerLeft += 10;
+        document.getElementById("player").style.left = playerLeft + "px";
+        checkWin();
+    }
+});
+
+// ===== GANAR =====
+function checkWin() {
+    if(!doorVisible) return;
+    if(playerLeft > 650) {
+        document.getElementById("gameContainer").style.display = "none";
+        startExam();
+    }
+}
+
+// ===== EXAMEN =====
+function startExam() {
+    qIndex = 0;
+    correct = 0;
+    document.getElementById("questionBox").style.display = "block";
+    showQuestion();
+}
+function showQuestion() {
+    const q = questions[qIndex];
+    document.getElementById("qText").textContent = q.q;
+    const opts = document.getElementById("qOptions");
+    opts.innerHTML = "";
+    q.o.forEach((t,i) => {
+        const b = document.createElement("button");
+        b.className = "option";
+        b.textContent = t;
+        b.onclick = () => {
+            if(i === q.a) correct++;
+            qIndex++;
+            if(qIndex < 10) showQuestion();
+            else finishExam();
+        };
+        opts.appendChild(b);
+    });
+}
+function finishExam() {
+    alert("Respuestas correctas: " + correct + "/10");
+    if(correct >= 7 && !unlockedLevels.includes(currentLevel+1)) {
+        unlockedLevels.push(currentLevel+1);
+    }
+    document.getElementById("questionBox").style.display = "none";
+    document.getElementById("menu").style.display = "block";
+    updateMenu();
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Simulación IA – Cambio de Fondo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:Segoe UI,system-ui,sans-serif;
+  background:radial-gradient(circle at top,#0a1a3f,#02010a);
+  color:white;
+}
+
+section{
+  padding:80px 8%;
+}
+
+h1{
+  text-align:center;
+  font-size:3rem;
+  background:linear-gradient(90deg,#00f6ff,#7b2cff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.subtitle{
+  text-align:center;
+  max-width:900px;
+  margin:20px auto 60px;
+  font-size:1.2rem;
+  animation:ray 4s linear infinite;
+  background:linear-gradient(120deg,#cfdfff 40%,#00f6ff 50%,#7b2cff 60%);
+  background-size:300% 100%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+@keyframes ray{
+  from{background-position:0%}
+  to{background-position:300%}
+}
+
+/* ===== SIMULACION ===== */
+.simulator{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px;
+}
+
+.panel{
+  background:#0b1025;
+  padding:25px;
+  border-radius:25px;
+  text-align:center;
+  animation:pulse 5s infinite;
+}
+
+@keyframes pulse{
+  0%{box-shadow:0 0 20px cyan}
+  50%{box-shadow:0 0 60px cyan}
+  100%{box-shadow:0 0 20px cyan}
+}
+
+.preview{
+  width:100%;
+  height:320px;
+  background:#111;
+  border-radius:20px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  position:relative;
+}
+
+.preview img{
+  max-width:100%;
+  max-height:100%;
+  position:relative;
+  z-index:2;
+}
+
+/* Fondo simulado */
+.fake-bg{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(#1e3c72,#2a5298);
+  opacity:0;
+  animation:mountain 6s infinite;
+}
+
+@keyframes mountain{
+  0%,40%{opacity:0}
+  60%,100%{opacity:1}
+}
+
+/* ===== PROMPTS ===== */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:40px;
+}
+
+.card{
+  background:#0b1025;
+  padding:30px;
+  border-radius:25px;
+  animation:pulse 4s infinite;
+}
+
+.good{border:2px solid #00f6ff}
+.bad{border:2px solid #ff4d4d}
+
+/* ===== INPUT ===== */
+input{
+  margin-top:15px;
+}
+</style>
+</head>
+
+<body>
+
+<section>
+<h1>Simulación de Edición con IA</h1>
+<p class="subtitle">
+Esta página demuestra qué puede y qué NO puede hacer una web sin inteligencia artificial real.
+</p>
+</section>
+
+<section class="simulator">
+
+<!-- ANTES -->
+<div class="panel">
+<h2>Imagen Original</h2>
+<div class="preview">
+  <img id="original">
+</div>
+<input type="file" accept="image/*" onchange="loadImage(event)">
+</div>
+
+<!-- DESPUES -->
+<div class="panel">
+<h2>Resultado Simulado</h2>
+<div class="preview">
+  <div class="fake-bg"></div>
+  <img id="result">
+</div>
+<p>⚠️ Esto es una simulación visual, no IA real</p>
+</div>
+
+</section>
+
+<section>
+<h1>Prompt Engineering</h1>
+
+<div class="cards">
+
+<div class="card good">
+<h3>Buen Prompt</h3>
+<p>
+Reemplaza el fondo de la imagen manteniendo intacto el personaje principal.
+Elimina completamente el gimnasio y colócalo en montañas rocosas
+con cielo azul, iluminación natural y estilo anime realista.
+</p>
+</div>
+
+<div class="card bad">
+<h3>Mal Prompt</h3>
+<p>
+Cambia el fondo.
+</p>
+</div>
+
+</div>
+</section>
+
+<section>
+<h1>Conclusión Educativa</h1>
+<p>
+Una página web sin modelos de inteligencia artificial no puede
+reconocer personajes ni editar imágenes de forma inteligente.
+Este proceso requiere modelos avanzados de visión artificial.
+El prompt es la instrucción clave que guía a la IA para lograr
+resultados precisos.
+</p>
+</section>
+
+<script>
+function loadImage(e){
+  const img = URL.createObjectURL(e.target.files[0]);
+  document.getElementById("original").src = img;
+  document.getElementById("result").src = img;
+}
+</script>
+
+</body>
+</html>
